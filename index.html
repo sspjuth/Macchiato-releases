@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Macchiato</title>
-  <meta name="description" content="Macchiato is a serious Markdown editor with instant preview, PDF creation, and support for diagrams, formulas, images, and tables.">
+  <meta name="description" content="Macchiato is a serious Markdown editor for local documents, with instant preview, polished formulas, structured editors, and styled HTML or PDF output.">
   <style>
     :root {
       color-scheme: light;
@@ -437,9 +437,11 @@
               <div># Project brief</div>
               <div class="muted-line">A confidential note for the local team.</div>
               <br>
+              <div>{style: dark-report}</div>
               <div>{image: prototype.png width=45%}</div>
               <div>{mermaid: decision-flow}</div>
-              <div>{math: E = mc^2}</div>
+              <div>{math: \int_a^b f(x)\,dx}</div>
+              <div>{tooltip: Explain an internal term}</div>
               <div>{table: milestones.csv}</div>
             </div>
             <div class="pane preview" aria-label="Rendered document sample">
@@ -452,15 +454,17 @@
                   <p>Local file reference, rendered in place.</p>
                 </div>
               </div>
-              <div class="formula">E = mc²</div>
+              <div class="formula">∫<sub>a</sub><sup>b</sup> f(x) dx</div>
             </div>
           </div>
         </div>
 
         <div>
           <p class="lead">
-            Markdown with instant preview, PDF creation, and focused editors for
-            richer content. Built for local documents that should stay local.
+            Markdown for local documents, with instant preview, focused editors,
+            polished formulas, and styled HTML or PDF output. Built for
+            confidential notes, research drafts, and technical reports that
+            should stay local.
           </p>
           <p class="privacy">No document data leaves your local client.</p>
           <div class="actions" id="download">
@@ -483,12 +487,12 @@
           <p>Open preview side by side when you want it, close it when you want focus, and keep writing in Markdown either way.</p>
         </div>
         <div class="feature">
-          <h3>PDF Creation</h3>
-          <p>Create polished documents from the same source you use for notes, briefs, and technical writeups.</p>
+          <h3>Designed Output</h3>
+          <p>Use light or dark document styles, polished LaTeX formulas, diagrams, images, and tables without hand-tuning every line.</p>
         </div>
         <div class="feature">
-          <h3>More Than Markdown</h3>
-          <p>Images, Mermaid diagrams, formulas, and tables get focused editors so structured content is easier to add.</p>
+          <h3>HTML Or PDF</h3>
+          <p>Export interactive HTML when tooltips matter, or create a stable PDF when the document needs to be shared or archived.</p>
         </div>
       </div>
     </section>
