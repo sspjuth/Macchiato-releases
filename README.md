@@ -1,6 +1,6 @@
 # Macchiato releases
 
-This public repository contains Macchiato desktop release downloads and the
+This public repository contains Macchiato desktop release files and the
 public landing page.
 
 Macchiato itself is developed in a private repository. Published releases may
