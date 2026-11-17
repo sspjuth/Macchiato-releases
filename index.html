@@ -140,11 +140,15 @@
     }
 
     .hero {
+      padding: 68px 0 82px;
+    }
+
+    .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
+      grid-template-columns: minmax(480px, 1.06fr) minmax(320px, 0.94fr);
       gap: 56px;
       align-items: center;
-      padding: 68px 0 82px;
+      margin-top: 42px;
     }
 
     .eyebrow {
@@ -158,7 +162,7 @@
 
     h1 {
       margin: 0;
-      max-width: 660px;
+      max-width: 980px;
       font-size: clamp(50px, 8vw, 94px);
       line-height: 0.94;
       letter-spacing: 0;
@@ -209,15 +213,18 @@
 
     .install {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
       margin-top: 14px;
-      max-width: 560px;
+      max-width: 280px;
     }
 
     .install .button {
       min-height: 42px;
       font-size: 14px;
+    }
+
+    .install [hidden] {
+      display: none;
     }
 
     .privacy {
@@ -437,13 +444,13 @@
     }
 
     @media (max-width: 920px) {
-      .hero,
+      .hero-grid,
       .document {
         grid-template-columns: 1fr;
       }
 
       .editor {
-        order: -1;
+        order: 0;
       }
 
       .features,
@@ -473,6 +480,10 @@
 
       .lead {
         font-size: 18px;
+      }
+
+      .install {
+        display: none;
       }
 
       .workspace {
@@ -512,20 +523,20 @@
         </svg>
         <span>Web</span>
       </a>
-      <a class="icon-link" href="https://github.com/sspjuth/Macchiato-releases/releases/latest" aria-label="Download Macchiato for macOS">
+      <a class="icon-link os-download" data-os="mac" href="https://github.com/sspjuth/Macchiato-releases/releases/latest" aria-label="Download Macchiato for macOS">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path class="filled" d="M16.3 2.4c.1 1.2-.3 2.3-1.1 3.2-.8.9-1.8 1.5-3 1.4-.1-1.1.3-2.2 1.1-3.1.8-.9 2-1.5 3-1.5z"></path>
           <path class="filled" d="M19.6 17.2c-.5 1.2-.8 1.8-1.5 2.9-1 1.5-2.3 3.3-4 3.3-1.4 0-1.8-.9-3.8-.9s-2.4.9-3.9.9c-1.7 0-3-1.7-4-3.2-2.7-4.1-3-8.9-1.3-11.4 1.2-1.8 3.1-2.8 4.9-2.8 1.8 0 2.9.9 4.3.9 1.4 0 2.3-.9 4.4-.9 1.6 0 3.2.8 4.4 2.2-3.9 2.1-3.3 7.4.5 9z"></path>
         </svg>
         <span>macOS</span>
       </a>
-      <a class="icon-link" href="https://github.com/sspjuth/Macchiato-releases/releases/latest" aria-label="Download Macchiato for Windows">
+      <a class="icon-link os-download" data-os="windows" href="https://github.com/sspjuth/Macchiato-releases/releases/latest" aria-label="Download Macchiato for Windows">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path class="filled" d="M3 4.4 10.8 3v8.3H3V4.4zm9.1-1.6L21 1.3v10h-8.9V2.8zM3 12.7h7.8V21L3 19.6v-6.9zm9.1 0H21v10l-8.9-1.5v-8.5z"></path>
         </svg>
         <span>Windows</span>
       </a>
-      <a class="icon-link" href="https://github.com/sspjuth/Macchiato-releases/releases/latest" aria-label="Download Macchiato for Linux">
+      <a class="icon-link os-download" data-os="linux" href="https://github.com/sspjuth/Macchiato-releases/releases/latest" aria-label="Download Macchiato for Linux">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M8.4 18.5c-1.3.6-2.7.8-4.1.5 1.1-1.3 1.9-2.5 2.4-3.8"></path>
           <path d="M15.6 18.5c1.3.6 2.7.8 4.1.5-1.1-1.3-1.9-2.5-2.4-3.8"></path>
@@ -542,9 +553,44 @@
 
   <main>
     <section class="hero shell">
-      <div>
-        <p class="eyebrow">Local-first writing</p>
-        <h1>A serious Markdown editor.</h1>
+      <p class="eyebrow">Local-first writing</p>
+      <h1>A serious Markdown editor.</h1>
+
+      <div class="hero-grid">
+        <div class="editor" aria-label="Macchiato editor preview">
+          <div class="toolbar">
+            <div class="toolbar-controls" aria-hidden="true">
+              <span class="control"></span>
+              <span class="control"></span>
+              <span class="control"></span>
+            </div>
+          </div>
+          <div class="workspace">
+            <div class="pane" aria-label="Markdown source sample">
+              <div># Project brief</div>
+              <div class="muted-line">A confidential note for the local team.</div>
+              <br>
+              <div>{image: prototype.png width=45%}</div>
+              <div>{mermaid: decision-flow}</div>
+              <div>{math: E = mc^2}</div>
+              <div>{table: milestones.csv}</div>
+            </div>
+            <div class="pane preview" aria-label="Rendered document sample">
+              <h2>Project brief</h2>
+              <p>A confidential note for the local team.</p>
+              <div class="figure">
+                <div class="image-tile" aria-hidden="true"></div>
+                <div>
+                  <strong>Prototype image</strong>
+                  <p>Local file reference, rendered in place.</p>
+                </div>
+              </div>
+              <div class="formula">E = mc²</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
         <p class="lead">
           Macchiato is Markdown with the sharp edges softened: instant preview,
           PDF creation, and structured editors for the parts that are painful to
@@ -555,43 +601,11 @@
           <a class="button primary" href="app/">Launch in browser (limited file access)</a>
         </div>
         <div class="install" aria-label="Install downloads">
-          <a class="button" href="https://github.com/sspjuth/Macchiato-releases/releases/latest">Install for macOS</a>
-          <a class="button" href="https://github.com/sspjuth/Macchiato-releases/releases/latest">Install for Windows</a>
-          <a class="button" href="https://github.com/sspjuth/Macchiato-releases/releases/latest">Install for Linux</a>
+          <a class="button os-download" data-os="mac" href="https://github.com/sspjuth/Macchiato-releases/releases/latest">Install for macOS</a>
+          <a class="button os-download" data-os="windows" href="https://github.com/sspjuth/Macchiato-releases/releases/latest">Install for Windows</a>
+          <a class="button os-download" data-os="linux" href="https://github.com/sspjuth/Macchiato-releases/releases/latest">Install for Linux</a>
         </div>
       </div>
-
-      <div class="editor" aria-label="Macchiato editor preview">
-        <div class="toolbar">
-          <div class="toolbar-controls" aria-hidden="true">
-            <span class="control"></span>
-            <span class="control"></span>
-            <span class="control"></span>
-          </div>
-        </div>
-        <div class="workspace">
-          <div class="pane" aria-label="Markdown source sample">
-            <div># Project brief</div>
-            <div class="muted-line">A confidential note for the local team.</div>
-            <br>
-            <div>{image: prototype.png width=45%}</div>
-            <div>{mermaid: decision-flow}</div>
-            <div>{math: E = mc^2}</div>
-            <div>{table: milestones.csv}</div>
-          </div>
-          <div class="pane preview" aria-label="Rendered document sample">
-            <h2>Project brief</h2>
-            <p>A confidential note for the local team.</p>
-            <div class="figure">
-              <div class="image-tile" aria-hidden="true"></div>
-              <div>
-                <strong>Prototype image</strong>
-                <p>Local file reference, rendered in place.</p>
-              </div>
-            </div>
-            <div class="formula">E = mc²</div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -630,5 +644,19 @@
     <span>Macchiato downloads are published through this public releases repository.</span>
     <a href="https://github.com/sspjuth/Macchiato-releases/releases/latest">Downloads</a>
   </footer>
+  <script>
+    (() => {
+      const ua = navigator.userAgentData?.platform || navigator.platform || navigator.userAgent || "";
+      const platform = ua.toLowerCase();
+      let os = "";
+      if (platform.includes("mac")) os = "mac";
+      else if (platform.includes("win")) os = "windows";
+      else if (platform.includes("linux") || platform.includes("x11")) os = "linux";
+      if (!os) return;
+      document.querySelectorAll(".os-download").forEach((link) => {
+        link.hidden = link.dataset.os !== os;
+      });
+    })();
+  </script>
 </body>
 </html>
