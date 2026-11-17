@@ -9,15 +9,19 @@
     :root {
       color-scheme: light;
       --bg: #f7f5ef;
+      --paper: #faf8f2;
       --panel: #ffffff;
+      --surface: #fffdf8;
       --ink: #181818;
       --soft-ink: #4f5358;
       --muted: #73706a;
       --line: #ded9cf;
       --teal: #087568;
       --teal-dark: #065f55;
+      --accent: #087568;
       --blue: #244c8a;
       --wine: #7f1d38;
+      --code: #27231f;
       --shadow: 0 28px 80px rgba(24, 24, 24, 0.12);
     }
 
@@ -234,69 +238,134 @@
       background: var(--teal);
     }
 
-    .summary {
-      display: grid;
-      gap: 14px;
-    }
-
-    .summary-item {
-      padding: 22px;
+    .editor {
+      overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: var(--panel);
-      box-shadow: 0 12px 36px rgba(24, 24, 24, 0.06);
+      background: var(--surface);
+      box-shadow: var(--shadow);
     }
 
-    .summary-item:nth-child(2) {
-      transform: translateX(28px);
-    }
-
-    .summary-item:nth-child(3) {
-      transform: translateX(56px);
-    }
-
-    .summary-kicker {
+    .toolbar {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
+      min-height: 44px;
+      padding: 0 14px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
       font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
     }
 
-    .summary-kicker::before {
-      content: "";
-      width: 26px;
-      height: 3px;
-      border-radius: 99px;
-      background: currentColor;
+    .toolbar-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .summary-item:nth-child(1) .summary-kicker {
+    .control {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #d7c0a4;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 440px;
+    }
+
+    .pane {
+      padding: 24px;
+    }
+
+    .pane:first-child {
+      border-right: 1px solid var(--line);
+      background: #211f1c;
+      color: #f8f4eb;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .pane:first-child .muted-line {
+      color: #b6aa98;
+    }
+
+    .preview h2 {
+      margin: 0 0 14px;
+      font-size: 26px;
+      line-height: 1.15;
+    }
+
+    .preview p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .figure {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 16px;
+      align-items: center;
+      margin: 18px 0;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f6f1e8;
+    }
+
+    .image-tile {
+      aspect-ratio: 1;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(8, 117, 104, 0.88), rgba(127, 29, 56, 0.72)),
+        repeating-linear-gradient(45deg, transparent 0 8px, rgba(255,255,255,0.18) 8px 10px);
+    }
+
+    .formula {
+      padding: 14px;
+      border-radius: 8px;
+      background: var(--code);
+      color: #fff8ea;
+      font-family: ui-serif, Georgia, serif;
+      font-size: 21px;
+      text-align: center;
+    }
+
+    .feature-band {
+      border-top: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      padding: 42px 0;
+    }
+
+    .feature h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .feature:nth-child(1) h3 {
       color: var(--teal);
     }
 
-    .summary-item:nth-child(2) .summary-kicker {
+    .feature:nth-child(2) h3 {
       color: var(--blue);
     }
 
-    .summary-item:nth-child(3) .summary-kicker {
+    .feature:nth-child(3) h3 {
       color: var(--wine);
-    }
-
-    .summary-item h2 {
-      margin: 0;
-      font-size: 28px;
-      line-height: 1.08;
-      letter-spacing: 0;
-    }
-
-    .summary-item p {
-      margin: 10px 0 0;
-      color: var(--soft-ink);
-      font-size: 16px;
     }
 
     .document-strip {
@@ -373,11 +442,11 @@
         grid-template-columns: 1fr;
       }
 
-      .summary-item:nth-child(2),
-      .summary-item:nth-child(3) {
-        transform: none;
+      .editor {
+        order: -1;
       }
 
+      .features,
       .capabilities {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -406,7 +475,17 @@
         font-size: 18px;
       }
 
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .pane:first-child {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
       .install,
+      .features,
       .capabilities {
         grid-template-columns: 1fr;
       }
@@ -482,22 +561,54 @@
         </div>
       </div>
 
-      <div class="summary" aria-label="Macchiato highlights">
-        <article class="summary-item">
-          <div class="summary-kicker">Instant Preview</div>
-          <h2>Write Markdown and see the result when you need it.</h2>
-          <p>Keep preview open side by side, close it for focus, and switch back without changing how you write.</p>
-        </article>
-        <article class="summary-item">
-          <div class="summary-kicker">PDF Creation</div>
-          <h2>Move from draft to deliverable without leaving the editor.</h2>
+      <div class="editor" aria-label="Macchiato editor preview">
+        <div class="toolbar">
+          <div class="toolbar-controls" aria-hidden="true">
+            <span class="control"></span>
+            <span class="control"></span>
+            <span class="control"></span>
+          </div>
+        </div>
+        <div class="workspace">
+          <div class="pane" aria-label="Markdown source sample">
+            <div># Project brief</div>
+            <div class="muted-line">A confidential note for the local team.</div>
+            <br>
+            <div>{image: prototype.png width=45%}</div>
+            <div>{mermaid: decision-flow}</div>
+            <div>{math: E = mc^2}</div>
+            <div>{table: milestones.csv}</div>
+          </div>
+          <div class="pane preview" aria-label="Rendered document sample">
+            <h2>Project brief</h2>
+            <p>A confidential note for the local team.</p>
+            <div class="figure">
+              <div class="image-tile" aria-hidden="true"></div>
+              <div>
+                <strong>Prototype image</strong>
+                <p>Local file reference, rendered in place.</p>
+              </div>
+            </div>
+            <div class="formula">E = mc²</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-band">
+      <div class="features shell">
+        <div class="feature">
+          <h3>Instant Preview</h3>
+          <p>Open preview side by side when you want it, close it when you want focus, and keep writing in Markdown either way.</p>
+        </div>
+        <div class="feature">
+          <h3>PDF Creation</h3>
           <p>Create polished documents from the same source you use for notes, briefs, and technical writeups.</p>
-        </article>
-        <article class="summary-item">
-          <div class="summary-kicker">More Than Markdown</div>
-          <h2>Images, Mermaid, formulas, and tables get proper editors.</h2>
-          <p>Use Markdown for the prose and focused tools for the structured pieces that deserve a gentler interface.</p>
-        </article>
+        </div>
+        <div class="feature">
+          <h3>More Than Markdown</h3>
+          <p>Images, Mermaid diagrams, formulas, and tables get focused editors so structured content is easier to add.</p>
+        </div>
       </div>
     </section>
 
@@ -510,24 +621,6 @@
             notes, research drafts, technical reports, and internal material
             that should not pass through a remote editor.
           </p>
-        </div>
-        <div class="capabilities" aria-label="Supported content">
-          <div class="capability">
-            <strong>Markdown</strong>
-            <p>Plain text source that stays readable and versionable.</p>
-          </div>
-          <div class="capability">
-            <strong>Diagrams</strong>
-            <p>Mermaid blocks for flows, architecture, and process maps.</p>
-          </div>
-          <div class="capability">
-            <strong>Formulas</strong>
-            <p>Math notation for scientific and technical documents.</p>
-          </div>
-          <div class="capability">
-            <strong>Tables</strong>
-            <p>CSV-backed table editing without wrestling raw Markdown pipes.</p>
-          </div>
         </div>
       </div>
     </section>
