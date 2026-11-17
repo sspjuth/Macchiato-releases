@@ -1,6 +1,7 @@
 # Macchiato releases
 
-This public repository contains Macchiato desktop release downloads.
+This public repository contains Macchiato desktop release downloads and the
+public landing page.
 
 Macchiato itself is developed in a private repository. Published releases may
 include macOS DMG files, Windows installers, Linux AppImages, portable archives,
@@ -12,3 +13,6 @@ Macchiato creates a local runtime environment and installs its Python runtime
 dependencies.
 
 The macOS package is ad-hoc signed and is not Apple-notarized.
+
+`index.html` is the GitHub Pages landing page. The browser launch button expects
+the PWA to be deployed under `app/`.
